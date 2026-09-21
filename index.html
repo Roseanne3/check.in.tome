@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Progress Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="eyebrow">PERSONAL GROWTH • 2026</div>
+    <h1>Progress Dashboard</h1>
+    <p>บันทึกทุกวัน แล้วดูพัฒนาการของตัวเองแบบเป็นระบบ</p>
+  </div>
+  <div class="date-box"><span id="todayLabel"></span><strong id="streak">🔥 0 วัน</strong></div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
+  <button class="tab" data-tab="checkin">📝 Daily Check-in</button>
+  <button class="tab" data-tab="goals">🎯 Goals</button>
+  <button class="tab" data-tab="projects">💻 Projects</button>
+</nav>
+
+<main>
+<section id="dashboard" class="page active">
+  <div class="hero-grid">
+    <div class="hero-card">
+      <div class="eyebrow">TODAY</div>
+      <h2 id="todayHeadline">พร้อมลุยวันนี้</h2>
+      <p id="todaySummary">ยังไม่มีข้อมูลของวันนี้</p>
+      <button class="primary" onclick="showTab('checkin')">+ บันทึกวันนี้</button>
+    </div>
+    <div class="score-card">
+      <span>คะแนนวันนี้</span><strong id="todayScore">0%</strong>
+      <div class="progress"><i id="scoreBar"></i></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <article><span>💻 Coding</span><strong id="codingTotal">0 ชม.</strong><small>รวมทั้งหมด</small></article>
+    <article><span>🏃 Exercise</span><strong id="exerciseTotal">0 นาที</strong><small>รวมทั้งหมด</small></article>
+    <article><span>📚 Learning</span><strong id="learningDays">0 วัน</strong><small>มีการบันทึก</small></article>
+    <article><span>⚖️ Weight</span><strong id="latestWeight">—</strong><small>ล่าสุด</small></article>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head"><h3>สรุป 7 วันล่าสุด</h3><span id="weekAverage">0%</span></div>
+      <div id="weekChart" class="bars"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>สิ่งที่ทำวันนี้</h3></div>
+      <div id="todayChecklist" class="checklist"></div>
+    </div>
+  </div>
+</section>
+
+<section id="checkin" class="page">
+  <div class="section-head"><div><div class="eyebrow">DAILY CHECK-IN</div><h2>บันทึกผลวันนี้</h2></div><span class="pill" id="saveStatus">พร้อมบันทึก</span></div>
+  <form id="checkinForm" class="card form-grid">
+    <label>วันที่<input type="date" id="date" required></label>
+    <label>💻 Coding / Web (นาที)<input type="number" id="coding" min="0" step="5" placeholder="เช่น 120"></label>
+    <label>🧠 พัฒนาความคิด (นาที)<input type="number" id="mind" min="0" step="5" placeholder="เช่น 30"></label>
+    <label>🇬🇧 English (นาที)<input type="number" id="english" min="0" step="5" placeholder="เช่น 20"></label>
+    <label>🗣️ Communication (นาที)<input type="number" id="communication" min="0" step="5" placeholder="เช่น 15"></label>
+    <label>🏃 ออกกำลังกาย (นาที)<input type="number" id="exercise" min="0" step="5" placeholder="เช่น 45"></label>
+    <label>⚖️ น้ำหนัก (กก.)<input type="number" id="weight" min="0" step="0.01" placeholder="เช่น 46.50"></label>
+    <label>😴 ชั่วโมงนอน<input type="number" id="sleep" min="0" max="24" step="0.5" placeholder="เช่น 8"></label>
+    <label class="full">📚 วันนี้เรียนรู้อะไร<textarea id="learning" rows="3" placeholder="เช่น JavaScript Fetch API และการส่งข้อมูลไป Google Apps Script"></textarea></label>
+    <label class="full">💡 สิ่งที่ทำสำเร็จ / สิ่งที่ต้องปรับปรุง<textarea id="note" rows="3"></textarea></label>
+    <div class="full actions"><button type="submit" class="primary">บันทึกวันนี้</button><button type="button" class="secondary" onclick="loadToday()">โหลดข้อมูลวันนี้</button></div>
+  </form>
+</section>
+
+<section id="goals" class="page">
+  <div class="section-head"><div><div class="eyebrow">GOALS</div><h2>เป้าหมายปิดเทอม</h2></div></div>
+  <div id="goalsGrid" class="goal-grid"></div>
+</section>
+
+<section id="projects" class="page">
+  <div class="section-head"><div><div class="eyebrow">PROJECT TRACKER</div><h2>โปรเจกต์หลัก</h2></div></div>
+  <div id="projectsGrid" class="project-grid"></div>
+</section>
+</main>
+
+<footer>Personal Progress Dashboard • Local-first + Google Sheets ready</footer>
+<script src="app.js"></script>
+</body>
+</html>
